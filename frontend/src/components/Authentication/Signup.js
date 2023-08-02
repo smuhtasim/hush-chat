@@ -26,7 +26,7 @@ const Signup = () => {
   }
 
   const submitHandler = () => {
-    
+
   }
   return (
     <VStack>
@@ -73,7 +73,7 @@ const Signup = () => {
             type={show ? "text" : "password"}
             placeholder='Confirm your password'
             onChange={(e) => {
-              setPassword(e.target.value);
+              setConfirmPassword(e.target.value);
             }}
           />
           <InputRightElement width='4.5rem'>
