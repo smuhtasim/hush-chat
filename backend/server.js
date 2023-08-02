@@ -1,10 +1,12 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const { chats } = require("./data/data")
+const connectDB = require("./config/db")
 
 
 const app = express()
 dotenv.config()
+connectDB()
 const PORT = process.env.PORT 
 
 app.listen(PORT, console.log(`App started successfully ${PORT}`))
