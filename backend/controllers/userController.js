@@ -7,7 +7,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please Enter all the field");
+    throw new Error("Please Enter all the fields");
   }
 
   const userExists = await User.findOne({ email });
@@ -24,7 +24,6 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    console.log(generateToken(user._id));
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -32,7 +31,34 @@ const registerUser = asyncHandler(async (req, res) => {
       pic: user.picture,
       token: generateToken(user._id),
     });
+  } else {
+    res.status(400)
+    throw new Error("Failed to create a user")
   }
 });
 
-module.exports = { registerUser };
+const authUser = asyncHandler(async (req,res) => {
+    const {email, password} = req.body
+
+    if(!email || !password) {
+        res.status(400)
+        throw new Error("Please Enter all the fields")
+    }
+
+    const user = await User.findOne({email})
+
+    if(user && (await user.matchPassword(password))) {
+        res.status(201).json({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          pic: user.picture,
+          token: generateToken(user._id),
+        });
+    } else {
+      res.status(401)
+      throw new Error("Invalid Email or Password")
+    }
+})
+
+module.exports = { registerUser, authUser };
