@@ -24,9 +24,9 @@ app.use('/api/user',userRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
-// app.get("/api/chat", ((req,res) => {
-//     res.send(chats)
-// }))
+app.get("/api/chats", ((req,res) => {
+    res.send(chats)
+}))
 
 // app.get("/api/chat/:id", ((req,res) => {
 //     const chat = chats.find( chat => chat._id === req.params.id)
