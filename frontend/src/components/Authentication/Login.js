@@ -83,6 +83,7 @@ const Login = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+          value={email}
         />
       </FormControl>
       <FormControl id='login_password' isRequired>
@@ -94,6 +95,7 @@ const Login = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            value={password}
           />
           <InputRightElement width='4.5rem'>
             <Button h='1.75rem' size='sm' onClick={handleShow}>

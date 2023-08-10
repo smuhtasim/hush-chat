@@ -23,6 +23,7 @@ const Signup = () => {
   const toast = useToast();
   const navigate = useNavigate();
 
+
   const handleShow = () => {
     setShow(!show);
   };
@@ -55,9 +56,9 @@ const Signup = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          const cloudinaryURL = JSON.stringify(data.url);
+          const cloudinaryURL = data.url;
           setPicture(cloudinaryURL);
-          console.log(picture);
+          console.log(cloudinaryURL);
           // console.log(`this is the pic ${JSON.stringify(data.url)}`);
           setLoading(false);
         })
@@ -79,7 +80,10 @@ const Signup = () => {
 
   const submitHandler = async () => {
     setLoading(true);
-    if (!name || !email || !password || !confirmPassword ) {
+    console.log(`olo ${name}, ${email}, ${password}, ${picture}`);
+
+    if (!name || !email || !password || !confirmPassword || !picture ) {
+      
       toast({
         title: "Please fill all the fields",
         status: "warning",

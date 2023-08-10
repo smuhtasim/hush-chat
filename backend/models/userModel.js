@@ -7,8 +7,8 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   picture: {
     type: String,
-    default:
-      "https://icon-library.com/images/anonymous-icon/anonymous-icon-15.jpg",
+    // default:
+    //   "https://icon-library.com/images/anonymous-icon/anonymous-icon-15.jpg",
   },
 },
 {
